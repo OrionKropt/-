@@ -410,7 +410,7 @@ int main()
 
     Setup();
 
-   // FirstPrint();
+   FirstPrint();
     
     while (true)
     {
