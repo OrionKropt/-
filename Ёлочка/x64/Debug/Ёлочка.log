@@ -1,0 +1,3 @@
+﻿  Ёлочка.cpp
+C:\Users\kropt\Desktop\Проекты Visual Studio\Ёлочка\Ёлочка\Ёлочка.cpp(409,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Ёлочка.vcxproj -> C:\Users\kropt\Desktop\Проекты Visual Studio\Ёлочка\x64\Debug\Ёлочка.exe
