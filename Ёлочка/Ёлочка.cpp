@@ -372,7 +372,7 @@ void Print_NewYear()
     {
         console.TextColor(COLOR_YELLOW);
         console.GotoXY(NewYear[i].x, NewYear[i].y);
-        cout << '?';
+        cout << '#';
     }
 }
 
@@ -410,7 +410,7 @@ int main()
 
     Setup();
 
-   // FirstPrint();
+   FirstPrint();
     
     while (true)
     {
