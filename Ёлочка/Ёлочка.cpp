@@ -197,8 +197,7 @@ void Setup()
     int count = 0;
     while (count < 2)
     {
-        //NewYear[i++] = Point(xl, y++);
-        //NewYear[i++] = Point(xr, y1--);
+        
         if (y % 2 == 0)
         {
             NewYear[i++] = Point(xl++, y);
@@ -253,21 +252,24 @@ void Setup()
 
 bool CheckPosition(int i)
 {
-    int xl = 11, xr = 31, y = 24;
-    bool F = true;
-
-    for (int j = 0; j < 34; j++)
+    int xl = 10, xr = 32, y = Y_MAX-4;
+    
+    
+    for (int j = 0; j < 24; j++)
     {
 
         if (Snow[i].x >= xl && Snow[i].x <= xr && Snow[i].y == y) return false;
-        xl++;
-        xr--;
-        y--;
+        if (i > 1)
+        {
+            xl++;
+            xr--;
+            y--;
+        }
     }
-    for (int j = 45; j < 50 && F; j++)
+    for (int j = 45; j < 50; j++)
         if (Snow[i].x == Christmas_tree[j].x && Snow[i].y == Christmas_tree[j].y) return false;
 
-    for (int j = 0; j < size(Garland) && F; j++)
+    for (int j = 0; j < size(Garland); j++)
     {
         if (j < size(NewYear))
         {
@@ -287,15 +289,15 @@ void Move_Snow()
         
        if (CheckPosition(i))
         {
-            console.GotoXY(Snow[i].x + 1, Snow[i].y);
-            printf("\b ");
+            console.GotoXY(Snow[i].x, Snow[i].y);
+            printf(" ");
        }
         if (rand() % 2) Snow[i].x = Snow[i].x + rand() % (3 - 1 + 1) + 1;
         else Snow[i].x = Snow[i].x - (rand() % (3 - 1 + 1) + 1);
         if (rand() % 2) Snow[i].y = Snow[i].y + rand() % (3 - 1 + 1) + 1;
         else Snow[i].y = Snow[i].y + rand() % (3 - 1 + 1) + 1;
         
-        if (Snow[i].y >= Y_MAX - 2) Snow[i] = Point(rand() % (X_MAX - 0 + 1) + 1, 0);
+        if (Snow[i].y >= Y_MAX - 1) Snow[i] = Point(rand() % (X_MAX - 0 + 1) + 1, 0);
         if (Snow[i].x > X_MAX || Snow[i].x < 0) Snow[i] = Point(rand() % (X_MAX - 0 + 1) + 1, 0);
     }
 }
@@ -324,7 +326,6 @@ void Print_Christmas_tree()
         console.GotoXY(Christmas_tree[i].x, Christmas_tree[i].y);
         if (i > 50 && Christmas_tree[i].color != COLOR_GREEN) {
             cout << (char)248; 
-            //Sleep(2);
         }
         else cout << '&';
     }
@@ -337,17 +338,16 @@ void Print_Garland()
         console.GotoXY(Garland[i].x, Garland[i].y);
         console.TextColor(Garland[i].color);
         cout << '%';
-        //Sleep(2);
     }
 }
 
 void Print_Snow()
 {
     console.TextColor(COLOR_WHITE);
-    for (int i = 0; i < X_MAX*2; i++)
+    for (int i = 0; i <= X_MAX*2+1; i++)
     {
-        if (i < X_MAX) console.GotoXY(i, Y_MAX);
-        else console.GotoXY((i - X_MAX), Y_MAX - 1);
+        if (i <= X_MAX) console.GotoXY(i, Y_MAX);
+        else console.GotoXY((i - X_MAX-1), Y_MAX - 1);
         cout << '#';
     }
 
@@ -367,7 +367,7 @@ void Print_Snow()
 
 void Print_NewYear()
 {
-    //console.TextColor(COLOR_WHITE);
+   
     for (int i = 0; i < size(NewYear); i++)
     {
         console.TextColor(COLOR_YELLOW);
@@ -410,13 +410,15 @@ int main()
 
     Setup();
 
-    FirstPrint();
+   // FirstPrint();
+    
     while (true)
     {
+        
         console.Window(X_MAX + 2, Y_MAX + 1);
 
         Print_Snow();
-        console.Delay(40);
+        console.Delay(60);
         Print_Christmas_tree();
         Print_Garland();
         Print_NewYear();
