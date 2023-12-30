@@ -292,10 +292,10 @@ void Move_Snow()
             console.GotoXY(Snow[i].x, Snow[i].y);
             printf(" ");
        }
-        if (rand() % 2) Snow[i].x = Snow[i].x + rand() % (3 - 1 + 1) + 1;
-        else Snow[i].x = Snow[i].x - (rand() % (3 - 1 + 1) + 1);
-        if (rand() % 2) Snow[i].y = Snow[i].y + rand() % (3 - 1 + 1) + 1;
-        else Snow[i].y = Snow[i].y + rand() % (3 - 1 + 1) + 1;
+       if (rand() % 2) Snow[i].x = Snow[i].x + 1;
+       else Snow[i].x = Snow[i].x - 1;
+       if (rand() % 2) Snow[i].y = Snow[i].y + 1;
+       else Snow[i].y = Snow[i].y + 1;
         
         if (Snow[i].y >= Y_MAX - 1) Snow[i] = Point(rand() % (X_MAX - 0 + 1) + 1, 0);
         if (Snow[i].x > X_MAX || Snow[i].x < 0) Snow[i] = Point(rand() % (X_MAX - 0 + 1) + 1, 0);
